@@ -1,5 +1,5 @@
 import Aurora from "@/components/backgrounds/Aurora";
-import Header from "@/app/components/Header";
+import Header from "@/app/components/header";
 import Link from "next/link";
 
 export default function Home() {

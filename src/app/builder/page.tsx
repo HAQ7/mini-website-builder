@@ -1,17 +1,34 @@
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
-import { LibrarySidebar } from "./components/librarySidebar";
-import { MenuIcon } from "lucide-react";
+import Image from "next/image";
+import { LibrarySidebar } from "./components/library-sidebar";
+import { SectionProvider } from "./store/section-context";
+import { LivePreview } from "./components/live-preview";
+import logo from "@/app/icon.svg";
+import Link from "next/link";
 
 export default function BuilderPage() {
-  return (
-    <SidebarProvider defaultOpen>
-      <div className="flex sm:flex-row flex-col-reverse h-screen">
-        <LibrarySidebar />
-        <div>
-          <SidebarTrigger className="cursor-pointer" />
-          <div>asdasdads</div>
-        </div>
-      </div>
-    </SidebarProvider>
-  );
+    return (
+        <SectionProvider>
+            <SidebarProvider defaultOpen>
+                <div className="flex flex-row w-screen">
+                    <LibrarySidebar />
+
+                    <SidebarTrigger className="cursor-pointer text-foreground size20" />
+
+                    <div className="flex flex-col flex-1 items-center">
+                        <div className="flex justify-center min-h-screen p-4 w-full max-w-4xl">
+                            {/* Preview Area */}
+
+                            <LivePreview />
+                        </div>
+                    </div>
+                    <div>
+                        <Link href="/">
+                            <Image src={logo} alt="Logo" className="size-10" />
+                        </Link>
+                    </div>
+                </div>
+            </SidebarProvider>
+        </SectionProvider>
+    );
 }
