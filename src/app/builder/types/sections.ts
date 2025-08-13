@@ -1,5 +1,7 @@
-interface Section {
+export interface Section {
         id: string;
+        bgColor?: string;
+        textColor?: string;
 }
 
 export interface SectionText extends Section {
@@ -12,10 +14,13 @@ export interface SectionImage extends SectionText {
 };
 
 export interface SectionHeader extends Section {
-    content: string;
+    logo: string;
+    content?: string;
+    navigationLinks: { label: string; href: string }[];
 };
 
 export interface SectionFooter extends Section {
-    title: string;
-    content: string;
+    logo: string;
+    middleText: string;
+    rightText: string;
 };

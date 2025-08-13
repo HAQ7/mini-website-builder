@@ -9,6 +9,7 @@ export type SectionType = SectionText | SectionImage | SectionHeader | SectionFo
 // Context type definition
 interface SectionContextType {
     sections: SectionType[];
+    setSections: React.Dispatch<React.SetStateAction<SectionType[]>>;
     addSection: (sectionType: 'header' | 'text' | 'image' | 'footer') => void;
     removeSection: (id: string) => void;
     updateSection: (id: string, updates: Partial<SectionType>) => void;
@@ -31,7 +32,12 @@ export function SectionProvider({ children }: { children: ReactNode }) {
             case 'header':
                 newSection = {
                     id,
-                    content: 'New Header Content'
+                    logo: '',
+                    navigationLinks: [
+                        { label: 'Home', href: '/' },
+                        { label: 'About', href: '/about' },
+                        { label: 'Contact', href: '/contact' }
+                    ],
                 } as SectionHeader;
                 break;
             case 'text':
@@ -46,14 +52,15 @@ export function SectionProvider({ children }: { children: ReactNode }) {
                     id,
                     title: 'New Image Section',
                     content: 'Section with image content...',
-                    imageUrl: '/placeholder-image.jpg'
+                    imageUrl: ''
                 } as SectionImage;
                 break;
             case 'footer':
                 newSection = {
                     id,
-                    title: 'Footer Title',
-                    content: 'Footer content goes here...'
+                    logo: '',
+                    middleText: 'Footer content goes here...',
+                    rightText: '© 2025 Your Company'
                 } as SectionFooter;
                 break;
             default:
@@ -87,6 +94,7 @@ export function SectionProvider({ children }: { children: ReactNode }) {
     return (
         <SectionContext.Provider value={{
             sections,
+            setSections,
             addSection,
             removeSection,
             updateSection,

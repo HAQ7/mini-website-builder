@@ -35,7 +35,7 @@ export default function SectionPicker() {
                         Select a section from the library to add to your page.
                     </DialogDescription>
                 </DialogHeader>
-                <DialogFooter className="flex flex-wrap gap-2">
+                <DialogFooter className="flex gap-2">
                     <Button
                         type="button"
                         variant={"secondary"}
